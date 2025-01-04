@@ -5,6 +5,7 @@ import kgcomputers.model.RealTimeWeatherResponse;
 import kgcomputers.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,13 +18,15 @@ public class BaseController {
     public BaseController(WeatherService weatherService) {
         this.weatherService = weatherService;
     }
+
     @GetMapping("/")
     public String index() {
         return "Hello, World!";
     }
 
-    @GetMapping("/realtime")
-    public RealTimeWeatherResponse getWeather(@RequestParam String location) {
+    @GetMapping("/realtime/{location}")
+    public RealTimeWeatherResponse getWeather(@PathVariable String location) {
         return weatherService.getRealTimeWeather(location);
     }
+
 }

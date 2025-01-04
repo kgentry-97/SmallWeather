@@ -27,36 +27,3 @@ class WeatherData {
 
 }
 
-@Getter
-@Setter
-class WeatherValues {
-
-    @JsonProperty("temperature")
-    private double temperature;
-    @JsonProperty("temperatureApparent")
-    private double temperatureApparent;
-    @JsonProperty("precipitation")
-    private double precipitation;
-    @JsonProperty("humidity")
-    private double humidity;
-    @JsonProperty("windSpeed")
-    private double windSpeed;
-    @JsonProperty("windDirection")
-    private double windDirection;
-    @JsonProperty("weatherCode")
-    private int weatherCode;
-}
-
-@Setter
-@Getter
-class LocationData {
-    @JsonProperty("lat")
-    private double lat;
-    @JsonProperty("lon")
-    private double lon;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("type")
-    private String type;
-}
-
