@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RealTimeWeatherResponse {
+
     @JsonProperty("data")
     private WeatherData data;
 
