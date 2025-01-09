@@ -8,14 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RealTimeWeatherResponse {
-
-    @JsonProperty("data")
-    private WeatherData data;
-
-    @JsonProperty("location")
-    private LocationData location;
-
+public class WeatherData {
+    @JsonProperty("time")
+    private String time;
+    @JsonProperty("values")
+    private WeatherValues values;
 
 }
-

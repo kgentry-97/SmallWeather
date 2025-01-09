@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestClientException;
 
 @Service
 public class WeatherService {
@@ -21,9 +22,16 @@ public class WeatherService {
 
     public RealTimeWeatherResponse getRealTimeWeather(String location) {
         String url = String.format("https://api.tomorrow.io/v4/weather/realtime?location=%s&apikey=%s", location, apiKey);
-        return restClient.get().uri(url)
-                .retrieve()
-                .body(RealTimeWeatherResponse.class);
+        try {
+            return restClient.get()
+                    .uri(url)
+                    .retrieve()
+                    .body(RealTimeWeatherResponse.class);
+        } catch (RestClientException e) {
+
+            System.err.printf("Error while fetching weather data for location %s: %s", location, e.getMessage());
+            return new RealTimeWeatherResponse();
+        }
     }
 
 }

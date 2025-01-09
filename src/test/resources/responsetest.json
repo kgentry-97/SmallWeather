@@ -1,0 +1,19 @@
+{
+  "data": {
+    "time": "2025-01-06T08:23:00Z",
+    "values": {
+      "temperature": -6.81,
+      "temperatureApparent": -6.81,
+      "precipitation": 0.0,
+      "humidity": 89.0,
+      "windSpeed": 1.13,
+      "windDirection": 147.69,
+      "weatherCode": 1000
+    }
+  },
+  "location": {
+    "lat": 39.739234924316406,
+    "lon": -104.98486328125,
+    "name": "Denver, Colorado, United States"
+  }
+}

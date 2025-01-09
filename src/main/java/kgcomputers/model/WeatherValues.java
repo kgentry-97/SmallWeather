@@ -2,16 +2,15 @@ package kgcomputers.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-class WeatherValues {
+@NoArgsConstructor
+public class WeatherValues {
 
-    @JsonProperty("temperatureF")
-    private double getTemperatureF(){
-        return temperature * 9/5 + 32;
-    }
+
     @JsonProperty("temperature")
     private double temperature;
     @JsonProperty("temperatureApparent")
@@ -31,4 +30,17 @@ class WeatherValues {
     private String getWeatherDescription(){
         return WeatherCode.fromCode(weatherCode).getDescription();
     }
+    @JsonProperty("temperatureF")
+    private double getTemperatureF(){
+        return convertTemperatureF(temperature);
+    }
+    @JsonProperty("temperatureApparentF")
+    private double getTemperatureApparentF(){
+        return convertTemperatureF(temperatureApparent);
+    }
+
+    private double convertTemperatureF(double temperature){
+        return temperature * 9/5 + 32;
+    }
+
 }

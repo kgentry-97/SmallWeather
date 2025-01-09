@@ -1,6 +1,5 @@
 package kgcomputers.rest;
 
-
 import kgcomputers.model.RealTimeWeatherResponse;
 import kgcomputers.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +17,8 @@ public class BaseController {
         this.weatherService = weatherService;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "Hello, World!";
-    }
-
     @GetMapping("/realtime/{location}")
-    public RealTimeWeatherResponse getWeather(@PathVariable String location) {
+    public RealTimeWeatherResponse getRealTimeWeatherLocation(@PathVariable String location) {
         return weatherService.getRealTimeWeather(location);
     }
 
