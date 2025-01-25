@@ -3,7 +3,6 @@ import kgcomputers.model.RealTimeWeatherResponse;
 import kgcomputers.service.WeatherService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.client.RestClient;
@@ -35,6 +34,7 @@ public class WeatherServiceTest {
     public void testGetRealTimeWeather() throws IOException {
         String location = "denver";
         String apiKey = "123456";
+        String units = "metric";
         String url = String.format("https://api.tomorrow.io/v4/weather/realtime?location=%s&apikey=%s", location, apiKey);
 
         RealTimeWeatherResponse testResponse = new RealTimeWeatherResponse();
@@ -47,6 +47,6 @@ public class WeatherServiceTest {
         }
 
         when(mockRestClient.get().uri(url).retrieve().body(RealTimeWeatherResponse.class)).thenReturn(testResponse);
-        assertEquals(testResponse, weatherService.getRealTimeWeather(location));
+        assertEquals(testResponse, weatherService.getRealTimeWeather(location, units));
     }
 }

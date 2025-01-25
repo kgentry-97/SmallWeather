@@ -85,11 +85,11 @@
 
         <div class="weather-data">
             <!-- Existing Weather Information -->
-            <p class="info">Temperature: <span th:text="${weather.temperature}">0</span>°C</p>
-            <p class="info">Feels Like: <span th:text="${weather.temperatureApparent}">0</span>°C</p>
+            <p class="info">Temperature: <span th:text="${weather.temperature}">0</span>°<span th:text="${units == 'imperial' ? 'F' : 'C'}"></span></p>
+            <p class="info">Feels Like: <span th:text="${weather.temperatureApparent}">0</span>°<span th:text="${units == 'imperial' ? 'F' : 'C'}"></span></p>
             <p class="info">Condition: <span th:text="${weather.weatherDescription}">Sunny</span></p>
             <p class="info">Humidity: <span th:text="${weather.humidity}">0</span>%</p>
-            <p>Wind Speed: <span th:text="${weather.windSpeed}">0</span> km/h</p>
+            <p>Wind Speed: <span th:text="${weather.windSpeed}">0</span> <span th:text="${units == 'imperial' ? 'mph' : 'km/h'}"></span></p>
             <p>Wind Direction: <span th:text="${#numbers.formatDecimal(weather.windDirection, 0, 0) + '°'}"></span></p>
         </div>
 

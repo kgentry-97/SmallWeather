@@ -20,7 +20,10 @@ public class WeatherService {
         this.restClient = restClient;
     }
 
-    public RealTimeWeatherResponse getRealTimeWeather(String location) {
+    public RealTimeWeatherResponse getRealTimeWeather(String location, String units) {
+        if(units.equals("imperial")){
+            location += "&units=imperial";
+        }
         String url = String.format("https://api.tomorrow.io/v4/weather/realtime?location=%s&apikey=%s", location, apiKey);
         try {
             return restClient.get()

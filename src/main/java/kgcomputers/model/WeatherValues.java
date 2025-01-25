@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Data
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -32,17 +32,4 @@ public class WeatherValues {
     public String getWeatherDescription(){
         return WeatherCode.fromCode(weatherCode).getDescription();
     }
-    @JsonProperty("temperatureF")
-    public double getTemperatureF(){
-        return convertTemperatureF(temperature);
-    }
-    @JsonProperty("temperatureApparentF")
-    public double getTemperatureApparentF(){
-        return convertTemperatureF(temperatureApparent);
-    }
-
-    private double convertTemperatureF(double temperature){
-        return temperature * 9/5 + 32;
-    }
-
 }
