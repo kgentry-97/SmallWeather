@@ -33,11 +33,11 @@ public class WeatherValues {
         return WeatherCode.fromCode(weatherCode).getDescription();
     }
     @JsonProperty("temperatureF")
-    private double getTemperatureF(){
+    public double getTemperatureF(){
         return convertTemperatureF(temperature);
     }
     @JsonProperty("temperatureApparentF")
-    private double getTemperatureApparentF(){
+    public double getTemperatureApparentF(){
         return convertTemperatureF(temperatureApparent);
     }
 
