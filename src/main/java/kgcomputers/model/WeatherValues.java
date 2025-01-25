@@ -30,8 +30,6 @@ public class WeatherValues {
 
     @JsonProperty("weatherDescription")
     public String getWeatherDescription(){
-        System.out.println("Weather Code: " + weatherCode);
-        System.out.println("Weather Description: " + WeatherCode.fromCode(weatherCode).getDescription());
         return WeatherCode.fromCode(weatherCode).getDescription();
     }
     @JsonProperty("temperatureF")
