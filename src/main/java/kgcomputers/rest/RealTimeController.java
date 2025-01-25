@@ -1,39 +1,43 @@
 package kgcomputers.rest;
 
-import kgcomputers.model.RealTimeWeatherResponse;
 import kgcomputers.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.HashMap;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.Map;
 
 @Controller
-public class BaseController {
+@RequestMapping("/realtime")
+public class RealTimeController {
 
     private final WeatherService weatherService;
 
     @Autowired
-    public BaseController(WeatherService weatherService) {
+    public RealTimeController(WeatherService weatherService) {
         this.weatherService = weatherService;
     }
 
-    @GetMapping("/realtime/{location}")
+    @GetMapping("/{location}")
     public String getRealTimeWeatherLocation(@PathVariable String location, Model model) {
        return getRealTimeWeatherLocationUnits(location, getSystemDefaultUnits(), model);
     }
 
-    @GetMapping("/realtime/{location}/{units}")
+    @GetMapping("/{location}/{units}")
     public String getRealTimeWeatherLocationUnits(@PathVariable String location, @PathVariable String units,
                                              Model model) {
         var weatherData = weatherService.getRealTimeWeather(location, units);
 
-        model.addAttribute("location", location);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm:ss").withZone(java.time.ZoneId.systemDefault());
+        String formattedTime = ZonedDateTime.parse(weatherData.getData().getTime()).format(formatter);
+
+        model.addAttribute("location", weatherData.getLocation().getName());
+        model.addAttribute("time", formattedTime);
         model.addAttribute("units", units);
         model.addAttribute("weather", weatherData.getData().getValues());
         return "realtime-weather";
