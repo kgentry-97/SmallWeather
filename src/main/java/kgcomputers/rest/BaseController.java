@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 @Controller
@@ -23,10 +24,8 @@ public class BaseController {
     }
 
     @GetMapping("/realtime/{location}")
-    public String getRealTimeWeatherLocation(@PathVariable String location,
-                                             @RequestParam(defaultValue = "metric") String units,
-                                             Model model) {
-       return getRealTimeWeatherLocationUnits(location, units, model);
+    public String getRealTimeWeatherLocation(@PathVariable String location, Model model) {
+       return getRealTimeWeatherLocationUnits(location, getSystemDefaultUnits(), model);
     }
 
     @GetMapping("/realtime/{location}/{units}")
@@ -38,6 +37,14 @@ public class BaseController {
         model.addAttribute("units", units);
         model.addAttribute("weather", weatherData.getData().getValues());
         return "realtime-weather";
+    }
+
+    private String getSystemDefaultUnits() {
+        Locale systemLocale = Locale.getDefault();
+        if (systemLocale.equals(Locale.US) || systemLocale.getCountry().equals("LR") || systemLocale.getCountry().equals("MM")) {
+            return "imperial";
+        }
+        return "metric";
     }
 
 }
