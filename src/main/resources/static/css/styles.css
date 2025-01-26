@@ -1,0 +1,66 @@
+/* Default styles for unknown conditions */
+body.weather-default {
+    background: linear-gradient(to bottom, #87CEEB, #f7f7f7); /* Clear sky */
+}
+
+/* Sunny weather */
+body.weather-sunny {
+    background: linear-gradient(to bottom, #FFD700, #FF8C00); /* Warm golden colors */
+}
+
+/* Cloudy weather */
+body.weather-cloudy {
+    background: linear-gradient(to bottom, #B0C4DE, #778899); /* Grayish blue tones */
+}
+
+/* Rainy weather */
+body.weather-rainy {
+    background: linear-gradient(to bottom, #4F4F4F, #000080); /* Stormy colors */
+}
+
+/* Snowy weather */
+body.weather-snowy {
+    background: linear-gradient(to bottom, #FFFFFF, #D3D3D3); /* White and light gray */
+}
+
+html, body {
+    height: 100%; /* Ensure the body takes up the full viewport height */
+    margin: 0; /* Remove default margins */
+}
+
+/* Smooth transition for background changes */
+body {
+    transition: background 0.5s ease-in-out;
+    background: linear-gradient(to bottom, #FFD700, #FF8C00); /* Your gradient */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Make the gradient fixed for scrolling */
+    background-size: cover; /* Ensure the gradient covers the entire viewport */
+}
+
+/* Additional styles for layout (optional) */
+.container {
+   display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       position: relative;
+       width: 80%; /* Adjust width as needed */
+       max-width: 800px; /* Limit the container size */
+       margin: 20px auto; /* Center the container horizontally */
+       padding: 20px; /* Add space inside the container */
+       background: white; /* White background for contrast */
+       border-radius: 15px; /* Smooth rounded corners */
+       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1rem;
+    margin: 5px 0;
+}

@@ -32,4 +32,8 @@ public class WeatherValues {
     public String getWeatherDescription(){
         return WeatherCode.fromCode(weatherCode).getDescription();
     }
+    @JsonProperty("weatherCss")
+    public String getWeatherCss(){
+        return WeatherCode.fromCode(weatherCode).name().toLowerCase();
+    }
 }

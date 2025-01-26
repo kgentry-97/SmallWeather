@@ -1,5 +1,6 @@
 package kgcomputers.rest;
 
+import kgcomputers.model.WeatherType;
 import kgcomputers.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,7 @@ public class RealTimeController {
         String formattedTime = ZonedDateTime.parse(weatherData.getData().getTime()).format(formatter);
 
         model.addAttribute("location", weatherData.getLocation().getName());
+        model.addAttribute("weatherType", WeatherType.mapToWeatherString( weatherData.getData().getValues().getWeatherDescription()));
         model.addAttribute("time", formattedTime);
         model.addAttribute("units", units);
         model.addAttribute("weather", weatherData.getData().getValues());
