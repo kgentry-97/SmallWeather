@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Realtime Weather</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/stylesrt.css}">
     <style>
 
         h1 {
@@ -58,14 +58,15 @@
 }
 
 .arrow {
-    width: 2px;                 /* Arrow thickness */
-    height: 40%;                /* Arrow length relative to the compass */
-    background-color: red;      /* Arrow color */
-    position: absolute;         /* Positioned inside compass */
-    top: 10%;                   /* Start closer to the center */
-    left: 50%;                  /* Center horizontally */
-    transform-origin: bottom center; /* Rotate around the bottom of the arrow */
-    transform: translateX(-50%) rotate(0deg); /* Adjust position and default rotation */
+    width: 8px; /* Thicker arrow */
+    height: 40%; /* Length of the arrow */
+    background: red; /* Base color */
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform-origin: bottom center;
+    transform: translateX(-50%) rotate(0deg);
+    clip-path: polygon(50% 0%, 100% 100%, 50% 80%, 0% 100%);
 
        }
 
