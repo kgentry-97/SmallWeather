@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>3-Day Weather Forecast</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .forecast-card {
+            transition: transform 0.2s;
+        }
+        .forecast-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">3-Day Weather Forecast for <span th:text="${location}">Location</span></h1>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form th:action="@{/forecast}" method="get" class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" name="location" class="form-control" th:value="${location}" placeholder="Enter location">
+                            </div>
+                            <div class="col-md-4">
+                                <select name="units" class="form-select">
+                                    <option value="metric" th:selected="${units == 'metric'}">Metric (°C)</option>
+                                    <option value="imperial" th:selected="${units == 'imperial'}">Imperial (°F)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary w-100">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div th:each="day : ${forecast.timelines.daily}" class="col-md-4 mb-4">
+                        <div class="card forecast-card h-100">
+                            <div class="card-body text-center">
+                                <h5 class="card-title" th:text="${day.time}">Fallback</h5>
+                                <div class="display-4 mb-3">
+                                    <span th:text="${#numbers.formatDecimal(day.values.temperatureMax, 1, 1)}">--</span>°
+                                    <span th:text="${units == 'metric' ? 'C' : 'F'}">°</span>
+                                </div>
+                                <p class="mb-1">Min: <span th:text="${#numbers.formatDecimal(day.values.temperatureMin, 1, 1)}">--</span>°</p>
+                                <p class="mb-1">Humidity: <span th:text="${#numbers.formatDecimal(day.values.humidityAvg, 1, 1)}">--</span>%</p>
+                                <p class="mb-1">Wind: <span th:text="${#numbers.formatDecimal(day.values.windSpeedAvg, 1, 1)}">--</span> mph</p>
+                                <p class="mb-1">Cloud Cover: <span th:text="${#numbers.formatDecimal(day.values.cloudCoverAvg, 1, 1)}">--</span>%</p>
+                                <p class="mb-0">Rain: <span th:text="${#numbers.formatDecimal(day.values.precipitationProbabilityAvg, 1, 1)}">--</span>%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a th:href="@{/(location=${location},units=${units})}" class="btn btn-outline-primary">View Current Weather</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
