@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="text-center mt-4">
-                    <a th:href="@{/(location=${location},units=${units})}" class="btn btn-outline-primary">View Current Weather</a>
+                    <a th:href="@{/realtime/{location}(location=${location})}" class="btn btn-outline-primary">View Current Weather</a>
                 </div>
             </div>
         </div>
